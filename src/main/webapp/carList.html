@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чтение</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" type="text/css">
+    <style>
+        body {
+            padding-top: 5rem;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #df0000;
+            padding: 10px;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li:first-child {
+            margin-left: 10px;
+        }
+
+        nav ul li form {
+            display: inline-block;
+        }
+
+        nav ul li form button {
+            padding: 15px 40px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        nav ul li:first-child form button {
+            background-color: #df0000; /
+            color: white;
+        }
+
+        /* Остальные кнопки */
+        nav ul li:not(:first-child) form button {
+            background-color: #df0000;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            position: absolute;
+            top: 100px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #df0000;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .navbar-nav {
+            font-size: 35px;
+        }
+
+        .custom-navbar {
+            background-color: #df0000;
+            color: #fff;
+        }
+    </style>
+
+
+</head>
+<body>
+<script src="reader.js"></script>
+
+<table>
+    <tbody id="carList">
+    </tbody>
+</table>
+
+<div class="modal fade" id="editCarModal" tabindex="-1" role="dialog" aria-labelledby="editCarModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCarModalLabel">Редактирование</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма для редактирования данных автомобиля -->
+                <form id="editCarForm">
+                    <div class="form-group">
+                        <label for="editMake">Марка</label>
+                        <input type="text" class="form-control" id="editMake">
+                    </div>
+                    <div class="form-group">
+                        <label for="editModel">Модель</label>
+                        <input type="text" class="form-control" id="editModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="editBody">Кузов</label>
+                        <input type="text" class="form-control" id="editBody">
+                    </div>
+                    <div class="form-group">
+                        <label for="editYear">Год выпуска</label>
+                        <input type="number" class="form-control" id="editYear">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCapacity">Объем двигателя</label>
+                        <input type="text" class="form-control" id="editCapacity">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
