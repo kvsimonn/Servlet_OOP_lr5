@@ -6,7 +6,7 @@ public class CarDAO {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/car_database";
     private static final String USER = "root";
-    private static final String PASSWORD = "roots";
+    private static final String PASSWORD = "root";
 
     public List<Car> getAllCars() throws SQLException {
         List<Car> cars = new ArrayList<>();

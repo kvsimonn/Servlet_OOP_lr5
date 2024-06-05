@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     let cars = []; // Переменная для хранения списка автомобилей
-
     const carList = document.getElementById('carList');
 
-    // Функция загрузки списка автомобилей
+    window.myModal = new bootstrap.Modal(document.getElementById('editCarModal'));
     function loadCars() {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'http://localhost:8888/Servlet_OOP_l5_war/car', true);
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         xhr.send();
     }
-
     function displayCars(cars) {
         let tableHTML = `
     <table class="table table-striped table-bordered" style="width: 100%;">
@@ -56,24 +54,22 @@ document.addEventListener('DOMContentLoaded', function () {
         </tbody>
     </table>
     `;
-
         carList.innerHTML = tableHTML;
     }
-
     let currentCarId;
     window.editCar = function (carId) {
         const selectedCar = cars.find(car => car.id === carId);
-
         document.getElementById('editMake').value = selectedCar.make;
         document.getElementById('editModel').value = selectedCar.model;
         document.getElementById('editBody').value = selectedCar.body;
         document.getElementById('editYear').value = selectedCar.year;
         document.getElementById('editCapacity').value = selectedCar.capacity;
         currentCarId = carId;
-
-        $('#editCarModal').modal('show'); // Показываем модальное окно
+        myModal.show(); // Показываем модальное окно
     }
-
+    window.closeEdit = function () {
+        myModal.hide();
+    }
     window.saveChanges = function () {
         const make = document.getElementById('editMake').value;
         const model = document.getElementById('editModel').value;
@@ -88,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.onload = function () {
             if (xhr.status === 200) {
                 loadCars();
-                $('#editCarModal').modal('hide'); // Закрываем модальное окно
+                myModal.hide(); // Закрываем модальное окно
             } else {
                 console.error('Произошла ошибка при сохранении изменений:', xhr.statusText);
             }
@@ -102,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
             capacity: capacity
         }));
     }
-
     window.deleteCar = function (carId) {
         const xhr = new XMLHttpRequest();
         xhr.open('DELETE', `http://localhost:8888/Servlet_OOP_l5_war/car?id=${carId}`, true);
@@ -116,6 +111,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
         xhr.send();
     }
-
     loadCars(); // Вызываем загрузку списка при загрузке страницы
 });

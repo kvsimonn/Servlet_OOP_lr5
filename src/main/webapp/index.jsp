@@ -125,7 +125,7 @@
 
 
 
-<script src="writer.js"></script>
+<script src="js/writer.js"></script>
 
 </body>
 </html>
